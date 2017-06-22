@@ -38,7 +38,7 @@ var REDIS map[string]string = map[string]string{
 
 // paths
 var TPL_PATH, UPLOAD_PATH, DOWNLOAD_PATH = func() (string, string, string) {
-	pwd, _ := os.Getwd()
+	pwd := "" // TODO: your project path
 	TemplatePath := filepath.Join(pwd, "template/")
 	UploadPath := filepath.Join(pwd, "file/upload/")
 	DownloadPath := filepath.Join(pwd, "file/download/")
