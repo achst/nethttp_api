@@ -9,6 +9,7 @@ import (
 
 	"mime/multipart"
 	"net/http"
+	"fmt"
 )
 
 func ToolHandler(w http.ResponseWriter, r *http.Request, Params httprouter.Params) {
@@ -41,6 +42,8 @@ func download(w http.ResponseWriter, r *http.Request) {
 	filename := r.FormValue("filename")
 	filepath := filepath.Join(DOWNLOAD_PATH, filename)
 	Logger.Info(filepath)
+	// 指定下载的文件名
+	w.Header().Add("Content-Disposition", fmt.Sprintf("attachment;filename=\"%s\"", filename))
 	http.ServeFile(w, r, filepath)
 }
 
